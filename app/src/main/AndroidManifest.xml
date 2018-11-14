@@ -36,7 +36,7 @@
         </service>
 
         <receiver
-                android:name=".boardcast_receivers.OnBootBroadcastReceiver"
+                android:name=".boardcastReceivers.OnBootBroadcastReceiver"
                 android:enabled="true"
                 android:exported="true"
                 android:permission="android.permission.RECEIVE_BOOT_COMPLETED">

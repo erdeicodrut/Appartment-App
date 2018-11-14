@@ -1,18 +1,17 @@
 package com.example.codruterdei.ap.helper
 
+import android.util.Log
 import com.squareup.moshi.Json
 import okhttp3.*
 import java.io.IOException
 
 fun HTTP_GET(URL: String, jsonBody: String = "", ending: (String) -> Unit = {}): Boolean {
 
-	val JSON = MediaType.parse("application/json; charset=utf-8")
+//	val JSON = MediaType.parse("application/json; charset=utf-8")
 
-	val reqBody = RequestBody.create(JSON, jsonBody)
-	
 	val req = Request.Builder()
 			.url(URL)
-			.post(reqBody)
+//			.post(reqBody)
 			.build()
 	
 	val client = OkHttpClient()

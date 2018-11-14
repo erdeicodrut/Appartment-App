@@ -1,4 +1,4 @@
-package com.example.codruterdei.ap.boardcast_receivers
+package com.example.codruterdei.ap.boardcastReceivers
 
 import android.content.BroadcastReceiver
 import android.content.Context
