@@ -3,26 +3,20 @@ package com.example.codruterdei.ap
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
-import android.os.AsyncTask
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
-import kotlinx.android.synthetic.main.activity_start.*
+import android.support.v7.app.AppCompatActivity
 import android.telephony.TelephonyManager
 import android.util.Log
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.example.codruterdei.ap.services.LocationService
+import kotlinx.android.synthetic.main.activity_start.*
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jetbrains.anko.doAsync
 import java.io.IOException
-import android.provider.AlarmClock.EXTRA_MESSAGE
-import android.widget.EditText
-import android.content.Intent
-
-
 
 
 class StartActivity : AppCompatActivity() {
@@ -65,6 +59,12 @@ class StartActivity : AppCompatActivity() {
 
 
         }
+
+
+
+        // Start the service manually
+        val i = Intent(this, LocationService::class.java)
+        startForegroundService(i)
     }
 
     private fun reqPermission(permission: String) {

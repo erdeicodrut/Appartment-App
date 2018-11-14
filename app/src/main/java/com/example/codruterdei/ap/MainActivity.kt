@@ -5,15 +5,25 @@ import android.content.Context
 import android.location.Location
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.telephony.TelephonyManager
-import android.util.Log
 import com.example.codruterdei.ap.helper.HTTP_GET
 import com.example.codruterdei.ap.helper.getLastBestLocation
-
 import kotlinx.android.synthetic.main.activity_main.*
 
 
+fun logLocation(context: Context) {
+    val homeLocation = Location("")
+    homeLocation.latitude = 46.753991
+    homeLocation.longitude = 23.560013
+
+    HTTP_GET(
+        "http://${context.getString(R.string.url)}/users/update/${(ContextCompat.getSystemService(context, TelephonyManager::class.java) as TelephonyManager).deviceId}/${getLastBestLocation(
+            context
+        ).distanceTo(homeLocation)}"
+    )
+}
 
 
 class MainActivity : AppCompatActivity() {
@@ -38,25 +48,10 @@ class MainActivity : AppCompatActivity() {
         false
     }
 
-    private fun logLocation() {
-        val homeLocation = Location("")
-        homeLocation.latitude = 46.753991
-        homeLocation.longitude = 23.560013
-
-        HTTP_GET(
-            "http://${getString(R.string.url)}/users/update/${(getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager).deviceId}/${getLastBestLocation(
-                this
-            ).distanceTo(homeLocation)}"
-        )
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-
-
-
     }
 }
